@@ -6,7 +6,7 @@
 
 ## THIS IS HOW KAFKA ACTUALLY WORKS — STRAIGHT FROM THE SOURCE
 
-![How Kafka Internally Works — Leader, Followers, ISR & KRaft Quorum](kafka-internals.png)
+![How Kafka Internally Works — Leader, Followers, ISR & KRaft Quorum](kafka-design-issue-and-solution.png)
 
 Before we tear down the 2-broker fantasy, ground yourself in reality. **This is the internal architecture of Apache Kafka — not my interpretation, not a vendor's marketing diagram.** Every claim in this article traces back to the official design documentation, where the Kafka team spells out the contract verbatim: all writes go to the partition **leader**, **followers** pull and replicate the leader's log, a write is only **committed** once every **in-sync replica (ISR)** has it, and only ISR members are ever eligible for **leader election**. The same docs state the guarantee plainly: *"a committed message will not be lost, as long as there is at least one in sync replica alive, at all times."*
 
