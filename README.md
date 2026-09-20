@@ -25,7 +25,7 @@ Everything below assumes you accept one premise: **Kafka works this way by desig
 
 ---
 
-## THE PROBLEM — Before You Read a Single Word
+## THE PROBLEM --- Before You Read a Single Word
 
 Most teams scale Kafka like this:
 
@@ -82,7 +82,7 @@ Both brokers accept writes. Two diverging datasets. **Irrecoverable corruption.*
 
 ---
 
-## THE SOLUTION — What Actually Works
+## THE SOLUTION --- What Actually Works
 
 One equation runs every consensus system on Earth:
 
@@ -123,7 +123,7 @@ With an odd voter count, a network partition can never satisfy quorum on both si
 
 ---
 
-## THE PROTECTION STACK — Quorum Guards the Brain, Replication Guards the Data
+## THE PROTECTION STACK --- Quorum Guards the Brain, Replication Guards the Data
 
 Quorum protects cluster metadata and leadership. Replication protects your actual data:
 
