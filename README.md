@@ -8,9 +8,9 @@
 
 ![How Kafka Internally Works — Leader, Followers, ISR & KRaft Quorum](kafka-design-issue-and-solution.png)
 
-Before we tear down the 2-broker fantasy, ground yourself in reality. **This is the internal architecture of Apache Kafka — not my interpretation** Every claim in this article traces back to the official design documentation, where the Kafka team spells out the contract verbatim: all writes go to the partition **leader**, **followers** pull and replicate the leader's log, a write is only **committed** once every **in-sync replica (ISR)** has it, and only ISR members are ever eligible for **leader election**. The same docs state the guarantee plainly: *"a committed message will not be lost, as long as there is at least one in sync replica alive, at all times."*
+Before we tear down the 2-broker fantasy, ground yourself in reality. **This is the internal architecture of Apache Kafka --- not my interpretation** Every claim in this article traces back to the official design documentation, where the Kafka team spells out the contract verbatim: all writes go to the partition **leader**, **followers** pull and replicate the leader's log, a write is only **committed** once every **in-sync replica (ISR)** has it, and only ISR members are ever eligible for **leader election**. The same docs state the guarantee plainly: *"a committed message will not be lost, as long as there is at least one in sync replica alive, at all times."*
 
-I don’t argue with the design documentation — I use it to make better decisions.
+I don’t argue with the design documentation --- I use it to make better decisions.
 Kafka’s official documentation explains how many failures the system can tolerate based on the number of replicas, and how `min.insync.replicas` helps prevent acknowledged messages from being lost.
 So the approach is simple: choose the right number of nodes and configurations based on those principles.
 That’s exactly what the rest of this article covers.
